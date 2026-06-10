@@ -51,7 +51,6 @@
         ::-webkit-scrollbar { width: 4px; height: 4px; }
         ::-webkit-scrollbar-track { background: rgba(3, 7, 18, 0.5); }
         ::-webkit-scrollbar-thumb { background: rgba(0, 229, 255, 0.2); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
         .app-container {
             display: flex;
@@ -61,7 +60,7 @@
             overflow: hidden;
         }
 
-        /* ================= SIDEBAR ARCHITECTURE ================= */
+        /* ================= SIDEBAR ================= */
         .sidebar {
             width: 310px;
             background: var(--bg-sidebar);
@@ -114,7 +113,7 @@
         .sidebar-footer { padding: 20px 24px; border-top: 1px solid rgba(255, 255, 255, 0.03); }
         .tier-badge { font-family: 'Fira Code', monospace; font-size: 9px; color: var(--accent); display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(0, 229, 255, 0.03); padding: 10px; border-radius: 8px; border: 1px solid rgba(0, 229, 255, 0.1); }
 
-        /* ================= WORKSPACE MECHANICS ================= */
+        /* ================= WORKSPACE ================= */
         .workspace { 
             flex-grow: 1; 
             display: flex; 
@@ -132,10 +131,12 @@
         .wallet-hub { background: rgba(11, 19, 41, 0.6); border: 1px solid rgba(0, 255, 102, 0.2); padding: 10px 20px; border-radius: 30px; font-size: 13.5px; font-weight: 700; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
         .wallet-hub i { color: var(--primary); }
 
+        /* FIXED RESPONSIVE NOTICE BOARD: No more overlaps on android screen ratios */
         .system-notice-board {
             background: linear-gradient(90deg, rgba(255, 0, 85, 0.07) 0%, rgba(3, 7, 18, 0.8) 100%);
             border-bottom: 1px solid rgba(255, 0, 85, 0.2); padding: 12px 30px; display: flex;
             align-items: center; gap: 15px; overflow: hidden; position: relative; z-index: 85; flex-shrink: 0;
+            width: 100%;
         }
         .notice-tag {
             background: var(--danger); color: #fff; font-size: 11px; font-weight: 800;
@@ -175,13 +176,7 @@
 
         #dashboard-frame.active-frame { display: block !important; opacity: 1; transform: scale(1) translateY(0); }
         #multiservice-frame.active-frame { display: block !important; opacity: 1; transform: scale(1) translateY(0); }
-        
-        /* FIXED MOB CENTERING: Checkout Page now drops absolute system pushes to center perfectly */
-        #checkout-action-frame.active-frame { 
-            display: block !important; 
-            opacity: 1; 
-            transform: scale(1) translateY(0);
-        }
+        #checkout-action-frame.active-frame { display: block !important; opacity: 1; transform: scale(1) translateY(0); }
 
         .dashboard-hero { background: linear-gradient(135deg, rgba(11, 19, 41, 0.5) 0%, rgba(3, 7, 18, 0.4) 100%); border: 1px solid rgba(0, 229, 255, 0.08); border-left: 4px solid var(--primary); padding: 30px; border-radius: 16px; margin-bottom: 30px; }
         .dashboard-hero h3 { font-size: 22px; margin-bottom: 10px; color: #fff; font-weight: 700; }
@@ -196,7 +191,7 @@
         .search-engine-module { display: flex; background: rgba(11, 19, 41, 0.4); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 14px; padding: 4px 4px 4px 18px; align-items: center; gap: 12px; max-width: 500px; margin-bottom: 30px; width: 100%; }
         .search-engine-module input { background: transparent; border: none; outline: none; color: #fff; font-size: 14px; flex-grow: 1; padding: 8px 0; }
 
-        /* ================= CARDS PLATFORM LAYOUT ================= */
+        /* ================= GRID CLUSTERS ================= */
         .services-layout-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; width: 100%; }
         
         .service-action-node {
@@ -216,7 +211,7 @@
             padding: 5px 14px; border-radius: 30px; font-weight: 700; border: 1px solid rgba(0, 229, 255, 0.12);
         }
 
-        /* ================= HOVER TOOLTIP SYSTEM ================= */
+        /* ================= TOOLTIPS ================= */
         .service-action-node .matrix-tooltip {
             position: absolute; bottom: 108%; left: 50%; transform: translateX(-50%) translateY(10px);
             width: 260px; background: rgba(11, 20, 43, 0.98); border: 1px solid var(--accent);
@@ -243,7 +238,6 @@
             transition: all 0.25s; flex-shrink: 0;
         }
 
-        /* FIXED FLUID WIDTH: Completely reconfigured to align beautifully inside any screen size */
         .checkout-card { 
             background: var(--bg-card); 
             border-radius: 20px; 
@@ -263,7 +257,7 @@
         .btn-dispatch { background: linear-gradient(90deg, var(--primary), var(--accent)); color: #030712; width: 100%; padding: 16px; border: none; border-radius: 12px; font-size: 15.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; }
         .btn-dispatch:hover { transform: translateY(-2px); box-shadow: 0 15px 30px var(--primary-glow); }
 
-        /* ================= RECORD SHEET ================= */
+        /* ================= HISTORY PACKETS ================= */
         .history-box { background: rgba(11, 19, 41, 0.3); border-radius: 16px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.03); margin-top: 20px; overflow-x: auto; width: 100%; }
         .tracking-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13.5px; min-width: 600px; }
         .tracking-table th { padding: 12px; color: var(--accent); border-bottom: 2px solid rgba(0, 229, 255, 0.1); font-weight: 700; font-family: 'Fira Code', monospace; text-transform: uppercase; font-size: 11px; }
@@ -274,7 +268,7 @@
 
         .backdrop-shroud { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3,7,18,0.8); backdrop-filter: blur(5px); z-index: 95; display: none; }
         
-        /* ================= ADVANCED RESPONSIVE ENGINE MEDIA QUERIES ================= */
+        /* ================= ULTRA-STABLE RESPONSIVE ENGINE ================= */
         @media (min-width: 1151px) {
             .workspace { width: calc(100% - 310px); }
         }
@@ -291,20 +285,22 @@
         }
 
         @media (max-width: 650px) {
-            .top-navbar { min-height: 100px; flex-wrap: wrap; padding: 12px 15px; }
-            .view-title h2 { font-size: 16px; }
-            .wallet-hub { padding: 8px 14px; font-size: 11.5px; }
-            .system-notice-board { padding: 10px 15px; gap: 10px; }
+            /* FIXED MOBILE HEIGHT OVERLAPS: Nav bar elements collapse dynamically inside vertical flex rows */
+            .top-navbar { height: auto; min-height: 90px; flex-direction: row; justify-content: space-between; padding: 15px; flex-wrap: wrap; }
+            .view-title { order: 1; }
+            .wallet-hub { order: 2; padding: 8px 14px; font-size: 11.5px; }
+            .menu-toggle-btn { order: 3; }
+            .system-notice-board { padding: 10px 15px; gap: 10px; flex-direction: row; }
             .notice-ticker-text { font-size: 12px; }
-            .portal-view-page { padding: 20px 10px; }
-            .dashboard-hero { padding: 20px 15px; }
+            .portal-view-page { padding: 15px 10px; }
+            .dashboard-hero { padding: 20px 15px; margin-bottom: 20px; }
             .dashboard-hero h3 { font-size: 18px; }
             .dashboard-hero p { font-size: 13px; }
-            .gateway-header-cluster { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .btn-reverse-back { width: 100%; justify-content: center; }
-            .service-action-node .matrix-tooltip { display: none !important; } /* Hidden on mobile to safeguard touch viewports */
+            .gateway-header-cluster { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+            .btn-reverse-back { width: 100%; justify-content: center; padding: 12px; }
+            .service-action-node .matrix-tooltip { display: none !important; } 
             .services-layout-grid { grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); gap: 12px; }
-            .checkout-card { padding: 20px 15px; border-radius: 14px; }
+            .checkout-card { padding: 20px 15px; border-radius: 14px; margin: 0 auto; width: 100%; }
         }
     </style>
 </head>
@@ -424,7 +420,9 @@
                         <form id="secureOrderCompilationEngine">
                             <input type="hidden" id="hiddenPayloadTitle" />
                             <input type="hidden" id="hiddenPayloadPrice" />
-                            <input type="hidden" id="hiddenPayloadDesc" /> <div class="form-group">
+                            <input type="hidden" id="hiddenPayloadDesc" />
+
+                            <div class="form-group">
                                 <label>টার্গেট আইডেন্টিফায়ার / সাবস্ক্রাইবার আইডি / সিস্টেম আইপি রুট</label>
                                 <input type="text" id="coreSystemTargetData" class="form-control" placeholder="সঠিক টার্গেট বা অ্যাকাউন্ট ডাটা স্ট্রিং..." required />
                             </div>
@@ -448,7 +446,7 @@
                         <thead>
                             <tr>
                                 <th>অর্ডার আইডি স্ট্রিম</th>
-                                <th>সার্ভিস நோড প্রোটোকল</th>
+                                <th>সার্ভিস নোড প্রোটোকল</th>
                                 <th>গেটওয়ে ডেবিট কস্ট</th>
                                 <th>অ্যাকশন স্ট্যাটাস</th>
                             </tr>
@@ -486,13 +484,13 @@
 
         const DEST_ADMIN_WHATSAPP = "8801782642544"; 
 
-        const SYSTEM_NOTICE_TEXT = "📢 হ্যালো ইঞ্জিনিয়ার! আমাদের Asianserver এপিআই ক্লাস্টারে নতুন সিকিউরড গেটওয়ে আপডেট সাকসেসফুলি ইনজেক্ট করা হয়েছে। এখন থেকে প্রতিটি ট্রানজেকশন ডেটা রিয়েল-টাইม এন্ড-টু-এন্ড এনক্রিপ্ট হবে। যেকোনো সার্ভারের সমস্যা দেখা দিলে এডমিন সাপোর্ট প্যানেলে টিকিট ওপেন করুন।";
+        const SYSTEM_NOTICE_TEXT = "📢 হ্যালো ইঞ্জিনিয়ার! আমাদের Asianserver এপিআই ক্লাস্টারে নতুন সিকিউরড গেটওয়ে আপডেট সাকসেসফুলি ইনজেক্ট করা হয়েছে। এখন থেকে প্রতিটি ট্রানজেকশন ডেটা রিয়েল-টাইম এন্ড-টু-এন্ড এনক্রিপ্ট হবে। যেকোনো সার্ভারের সমস্যা দেখা দিলে এডমিন সাপোর্ট প্যানেলে টিকিট ওপেন করুন।";
         document.getElementById('liveNoticeTickerField').innerText = SYSTEM_NOTICE_TEXT;
 
         const multiServicesDatabase = [
             { id: 1, name: "NID সার্ভার কপি ডাউনলোড", icon: "fa-id-card", price: "৳ ৩০", oldPrice: "৳ ৫০", desc: "জাতীয় পরিচয়পত্রের অফিসিয়াল সার্ভার ডাটাবেজ থেকে মূল কপি এক্সট্রাক্ট এবং ডাউনলোড স্কিম।" },
-            { id: 2, name: "TIN সার্টিফিকেট ইনস্ট্যান্ট জেনারেটর", icon: "fa-file-invoice-dollar", price: "৳ ৫০", oldPrice: "৳ ৮০", desc: "ইলেকট্রনিক ট্যাক্স আইдেন্টিফিকেশন স্লিপ বা কর সার্টিফিকেট ফাইল জেনারেশন মডিউল।" },
-            { id: 3, name: "বায়োমেট্রিক সিম ওনারশিপ ভেরিফাই", icon: "fa-fingerprint", price: "৳ ৪০", oldPrice: "৳ ৬০", desc: "যেকোনো অপারেটরের সিম কার্ডের প্রকৃত বায়োমেট্রিক মালিকানার তথ্য ভেরিফিকেশন রুট।" },
+            { id: 2, name: "TIN সার্টিফিকেট ইনস্ট্যান্ট জেনারেটর", icon: "fa-file-invoice-dollar", price: "৳ ৫০", oldPrice: "৳ ৮০", desc: "ইলেকট্রনিক ট্যাক্স আইডেন্টিফিকেশন স্লিপ বা কর সার্টিফিকেট ফাইল জেনারেশন মডিউল।" },
+            { id: 3, name: "বায়োমেট্রিক SIM ওনারশিপ ভেরিফাই", icon: "fa-fingerprint", price: "৳ ৪০", oldPrice: "৳ ৬০", desc: "যেকোনো অপারেটরের সিম কার্ডের প্রকৃত বায়োমেট্রিক মালিকানার তথ্য ভেরিফিকেশন রুট।" },
             { id: 4, name: "অনলাইন জন্ম নিবন্ধন অনুসন্ধান", icon: "fa-baby", price: "৳ ২০", oldPrice: "৳ ৩৫", desc: "সরকারি ডিজিটাল রেজিস্ট্রি থেকে ডিজিটাল জন্ম সনদের সঠিক তথ্য অনুসন্ধান গেটওয়ে।" },
             { id: 5, name: "স্মার্ট আইডি কার্ড নম্বর ট্র্যাকার", icon: "fa-address-card", price: "৳ ২৫", oldPrice: "৳ ৪০", desc: "স্মার্ট কার্ড বা ভোটার স্লিপ আইডির ডাটাবেস রিয়েলটাইম লোকেশন অ্যান্ড ট্র্যাকিং মেকানিজম।" },
             { id: 6, name: "ভোটার স্লিপ ডাটা এক্সট্রাকশন", icon: "fa-file-shield", price: "৳ ১৫", oldPrice: "৳ ৩০", desc: "নতুন ভোটারদের অস্থায়ী স্লিপ ডাটা সিঙ্ক করে ফুল ইনফরমেশন এক্সট্রাক্ট প্রোটোকল।" },
@@ -501,17 +499,17 @@
             { id: 9, name: "ডিজিটাল সিকিউর অনলাইন জিডি", icon: "fa-shield-halved", price: "৳ ১০০", oldPrice: "৳ ১৫০", desc: "হারানো বা সুরক্ষার যেকোনো আইনি ডায়েরি অনলাইন পোর্টালে সরাসরি প্রসেসিং লুপ।" },
             { id: 10, name: "ভূমি রেকর্ড ই-নামজারি ট্র্যাকিং", icon: "fa-map-location-dot", price: "৳ ৪৫", oldPrice: "৳ ৭০", desc: "ভূমির ই-মিউটেশন বা ডিজিটাল নামজারি খতিয়ান অ্যাপ্লিকেশনের সেশন ট্র্যাকিং কোড।" },
             { id: 11, name: "খতিয়ান ও পর্চা অনলাইন ভেরিফাই", icon: "fa-file-signature", price: "৳ ৫০", oldPrice: "৳ ৮০", desc: "ভূমি মন্ত্রণালয়ের আরএস/বিএস খতিয়ান এবং ডিজিটাল পর্চার মূল ডাটাবেস ভেরিফিকেশন।" },
-            { id: 12, name: "স্মার্ট বিদ্যুৎ বিল গেটওয়ে চেক", icon: "fa-bolt", price: "৳ ১০", oldPrice: "৳ ২০", desc: "ডেসকো, ডিপিডিসি বা পল্লী বিদ্যুতের বকেয়া বিল ব্যালেন্স এবং মিটার ডাটা রিডার।" },
+            { id: 12, name: "স্মার্ট বিদ্যুৎ বিল গেটওয়ে চেক", icon: "fa-bolt", price: "৳ ১০", oldPrice: "৳ ২০", desc: "ডেসকো, ডিপিдিসি বা পল্লী বিদ্যুতের বকেয়া বিল ব্যালেন্স এবং মিটার ডাটা রিডার।" },
             { id: 13, name: "অফিসিয়াল মার্কশিট রেজাল্ট ফাইন্ডার", icon: "fa-graduation-cap", price: "৳ ১৫", oldPrice: "৳ ২৫", desc: "জাতীয় শিক্ষা বোর্ড ডাটাবেস থেকে এসএসসি/এইচএসসি পরীক্ষার জিপিএ এবং মার্কশিট অনুসন্ধান।" },
             { id: 14, name: "ভ্যাকসিন বা কোভিড সার্টিফিকেট কারেকশন", icon: "fa-file-medical", price: "৳ ৭০", oldPrice: "৳ ১২০", desc: "সুরক্ষা ডাটাবেজ সিস্টেমে পাসপোর্ট নম্বর সিঙ্ক্রোনাইজেশন এবং ভুল তথ্য সংশোধন স্কিম।" },
-            { id: 15, name: "ই-ট্রেড লাইসেন্স ডাটা প্রসেসিং", icon: "fa-briefcase", price: "৳ ১২ো", oldPrice: "৳ ২০০", desc: "ডিজিটাল কমার্শিয়াল ট্রেড লাইসেন্সের ভেরিফিকেশন এবং ভ্যালিডিটি স্ট্যাটাস রিডার।" },
+            { id: 15, name: "ই-ট্রেড লাইসেন্স ডাটা প্রসেসিং", icon: "fa-briefcase", price: "৳ ১২০", oldPrice: "৳ ২০০", desc: "ডিজিটাল কমার্শিয়াল ট্রেড লাইসেন্সের ভেরিফিকেশন এবং ভ্যালিডিটি স্ট্যাটাস রিডার।" },
             { id: 16, name: "police ক্লিয়ারেন্স রিমোট স্ট্যাটাস", icon: "fa-building-shield", price: "৳ ৮০", oldPrice: "৳ ১৩০", desc: "বৈদেশিক বা অফিশিয়াল police ক্লিয়ারেন্স সার্টিফিকেটের ফাইল কাউন্টার ভেরিফিকেশন রুট।" },
             { id: 17, name: "বিকাশ/নগদ ট্রানজেকশন রিভার্সাল হেল্প", icon: "fa-money-bill-transfer", price: "৳ ২০", oldPrice: "৳ ৫০", desc: "ভুল নম্বরে মানি ট্রান্সমিট হলে সিস্টেমেটিক কমপ্লেইন ফরম্যাটিং আর্কিটেকচার গাইড।" },
             { id: 18, name: "সোশ্যাল মিডিয়া কম্প্রোমাইজড রিকভারি", icon: "fa-user-lock", price: "৳ ১৫০", oldPrice: "৳ ৩০০", desc: "হ্যাকড বা সিকিউরিটি হোল্ডে পড়া প্রোফাইলের সিকিউর আইডেন্টিটি রিকভারি ইন্টারফেস।" },
             { id: 19, name: "সার্ভার সিকিউরিটি অডিটিং ও বুস্টিং", icon: "fa-server", price: "৳ ২৫০", oldPrice: "৳ ৫০০", desc: "ওয়েব বা নেটওয়ার্ক ব্যাকএন্ডের পোর্ট স্ক্যানিং, ওয়ান্যাবিলিটি ফিক্সিং এবং ফায়ারওয়াল আর্মার।" },
             { id: 20, name: "ইনক্রিপ্ট ডেডিকেটেড প্রিমিয়াম VPN", icon: "fa-network-wired", price: "৳ ৯৯", oldPrice: "৳  ১৫০", desc: "হাই-স্পিড সিকিউর জিরো-লগ টানেলিং প্রোটোকল প্রিমিয়াম প্রক্সি সেশন রুট।" },
             { id: 21, name: "ফেসবুক প্রতি অ্যাকাউন্ট রিকভারি", icon: "fa-brands fa-facebook-f", price: "৳ ২০০", oldPrice: "৳ ৪০০", desc: "ফেসবুক টু-ফ্যাক্টর অথেন্টিকেশন বাইপাস এবং আইডেন্টিটি লক রিমুভাল মেকানিজম।" },
-            { id: 22, name: "Gmail per Account Setup Fix", icon: "fa-envelope", price: "৳ ৯৯", oldPrice: "৳ ১৮০", desc: "জিমেইল রিমোট অ্যাকাউন্ট রিকভারি এবং অ্যাডভান্সড সিকিউরিটি মডিউল্যার প্যারামিটার সেটআপ।" }
+            { id: 22, name: "Gmail per Account Setup Fix", icon: "fa-envelope", price: "৳ ৯৯", oldPrice: "৳ ১৮ো", desc: "জিমেইল রিমোট অ্যাকাউন্ট রিকভারি এবং অ্যাডভান্সড সিকিউরিটি মডিউল্যার প্যারামিটার সেটআপ।" }
         ];
 
         const catalogContainer = document.getElementById('serviceCatalogInjectionMatrix');
@@ -525,8 +523,7 @@
             servicesArray.forEach(service => {
                 const nodeElement = document.createElement('div');
                 nodeElement.className = 'service-action-node';
-                // FIXED HOOKS: Description text is passed dynamically to checkout compiler arrays now
-                nodeElement.setAttribute('onclick', `initiateCheckoutPipeline('${service.name}', '${service.price}', '${service.desc}')`);
+                nodeElement.setAttribute('onclick', `initiateCheckoutPipeline('${service.name.replace(/'/g, "\\'")}', '${service.price}', '${service.desc.replace(/'/g, "\\'")}')`);
                 
                 nodeElement.innerHTML = `
                     <div class="matrix-tooltip">
@@ -582,7 +579,7 @@
             document.getElementById('checkoutTargetCost').innerText = price;
             document.getElementById('hiddenPayloadTitle').value = name;
             document.getElementById('hiddenPayloadPrice').value = price;
-            document.getElementById('hiddenPayloadDesc').value = desc; // FIXED: Hidden fields loaded with description text payload
+            document.getElementById('hiddenPayloadDesc').value = desc; 
 
             switchDynamicFrame('checkout-action-frame', 'Secure Order Terminal', null);
         }
@@ -594,26 +591,28 @@
         mobTrigger.addEventListener('click', () => { sidePanel.classList.toggle('mobile-open'); shroudView.classList.toggle('active-shroud'); });
         shroudView.addEventListener('click', () => { sidePanel.classList.remove('mobile-open'); shroudView.classList.remove('active-shroud'); });
 
+        // FIXED SUBMISSION ENGINE: Now reads live data directly from the DOM input nodes
         document.getElementById('secureOrderCompilationEngine').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const parsedTitle = document.getElementById('hiddenPayloadTitle').value;
             const parsedCost = document.getElementById('hiddenPayloadPrice').value;
-            const parsedDesc = document.getElementById('hiddenPayloadDesc').value; // FIXED: Parsing description value out of forms hook
+            const parsedDesc = document.getElementById('hiddenPayloadDesc').value; 
+            
+            // FIXED: Fetching live input directly inside execution hook
             const parsedTargetValue = document.getElementById('coreSystemTargetData').value;
             const parsedUserRemarks = document.getElementById('optionalSystemRemarks').value || 'None Specified';
             const transactionTrackingId = '#HP-' + Math.floor(3000 + Math.random() * 6999);
 
-            // FIXED TEXT PAYLOAD STREAM: Full description and features loaded inside the structured message payload string
             const whatsappStringStream = 
                 `*🛡️ HACKPROOF ACADEMY GATEWAY INVOICE 🛡️*%0A` +
                 `========================================%0A` +
                 `*TRANSACTION ID :* ${transactionTrackingId}%0A` +
-                `*GATEWAY MODULE :* ${parsedTitle}%0A` +
-                `*MODULE DETAILS :* ${parsedDesc}%0A` +
-                `*COST CHARGE    :* ${parsedCost} BDT%0A` +
-                `*TARGET DEST    :* ${parsedTargetValue}%0A` +
-                `*CONFIG REMARKS :* ${parsedUserRemarks}%0A` +
+                `*GATEWAY MODULE :* ${encodeURIComponent(parsedTitle)}%0A` +
+                `*MODULE DETAILS :* ${encodeURIComponent(parsedDesc)}%0A` +
+                `*COST CHARGE    :* ${encodeURIComponent(parsedCost)} BDT%0A` +
+                `*TARGET DEST    :* ${encodeURIComponent(parsedTargetValue)}%0A` +
+                `*CONFIG REMARKS :* ${encodeURIComponent(parsedUserRemarks)}%0A` +
                 `========================================%0A` +
                 `*STATUS:* PENDING AUTHORIZATION VIA SYSTEM WAITING CORE.`;
 
@@ -627,7 +626,7 @@
             `;
             ledgerLogsSheet.insertBefore(rowNode, ledgerLogsSheet.firstChild);
 
-            alert("অর্ডার সেশন সফলভাবে এনক্রিপ্ট করা হয়েছে! রিয়েলটাইম সিকিউরিটি গেটওয়ে ট্রানজেকশন লগ আপডেট সম্পন্ন।");
+            alert("অর্ডার সেশন সফলভাবে এনক্রিপ্ট করা হয়েছে! হোয়াটসঅ্যাপে ট্রান্সমিট করা হচ্ছে।");
             window.open(`https://wa.me/${DEST_ADMIN_WHATSAPP}?text=${whatsappStringStream}`, '_blank');
         });
     </script>
