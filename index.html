@@ -60,7 +60,7 @@
             overflow: hidden;
         }
 
-        /* ================= SIDEBAR ================= */
+        /* ================= SIDEBAR ARCHITECTURE ================= */
         .sidebar {
             width: 310px;
             background: var(--bg-sidebar);
@@ -102,6 +102,544 @@
 
         .menu-wrapper { padding: 10px 15px; flex-grow: 1; overflow-y: auto; }
         .menu-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin: 15px 0 10px 10px; font-weight: 700; font-family: 'Fira Code', monospace; }
+        .menu-list { list-style: none; }
+        .menu-item {
+            padding: 14px 16px; margin-bottom: 6px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; color: #9ca3af; transition: all 0.25s ease; border: 1px solid transparent;
+        }
+        .menu-item:hover { color: #fff; background: rgba(255, 255, 255, 0.02); border-color: rgba(0, 229, 255, 0.1); }
+        .menu-item.active { color: #fff; background: linear-gradient(90deg, rgba(0, 255, 102, 0.06) 0%, transparent 100%); border-color: var(--primary); }
+        .menu-item.active i { color: var(--primary); }
+
+        .sidebar-footer { padding: 20px 24px; border-top: 1px solid rgba(255, 255, 255, 0.03); }
+        .tier-badge { font-family: 'Fira Code', monospace; font-size: 9px; color: var(--accent); display: flex; align-items: center; justify-content: center; gap: 8px; background: rgba(0, 229, 255, 0.03); padding: 10px; border-radius: 8px; border: 1px solid rgba(0, 229, 255, 0.1); }
+
+        /* ================= WORKSPACE MECHANICS ================= */
+        .workspace { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        .top-navbar {
+            min-height: 90px; padding: 10px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.04); background: rgba(3, 7, 18, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); flex-shrink: 0; z-index: 90; gap: 15px;
+        }
+        .menu-toggle-btn { display: none; font-size: 22px; color: #fff; cursor: pointer; }
+        .view-title h2 { font-size: 20px; font-weight: 700; color: #fff; }
+        .wallet-hub { background: rgba(11, 19, 41, 0.6); border: 1px solid rgba(0, 255, 102, 0.2); padding: 10px 20px; border-radius: 30px; font-size: 13.5px; font-weight: 700; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .wallet-hub i { color: var(--primary); }
+
+        .system-notice-board {
+            background: linear-gradient(90deg, rgba(255, 0, 85, 0.07) 0%, rgba(3, 7, 18, 0.8) 100%);
+            border-bottom: 1px solid rgba(255, 0, 85, 0.2); padding: 12px 30px; display: flex;
+            align-items: center; gap: 15px; overflow: hidden; position: relative; z-index: 85; flex-shrink: 0;
+            width: 100%;
+        }
+        .notice-tag {
+            background: var(--danger); color: #fff; font-size: 11px; font-weight: 800;
+            padding: 4px 10px; border-radius: 6px; text-transform: uppercase;
+            font-family: 'Fira Code', monospace; letter-spacing: 0.5px; flex-shrink: 0;
+        }
+        .notice-ticker-text {
+            color: #f3f4f6; font-size: 13.5px; font-weight: 500; white-space: nowrap;
+            animation: textTickerMarquee 25s linear infinite; padding-left: 100%;
+        }
+        @keyframes textTickerMarquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* FIXED UNIFIED CONTENT MODEL */
+        .view-wrapper { 
+            flex-grow: 1; 
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden;
+        }
+        
+        .portal-view-page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%; 
+            padding: 30px; 
+            overflow-y: auto; 
+            display: none !important; 
+            opacity: 0; 
+            transform: scale(0.99) translateY(10px); 
+            transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        #dashboard-frame.active-frame { display: block !important; opacity: 1; transform: scale(1) translateY(0); }
+        #multiservice-frame.active-frame { display: block !important; opacity: 1; transform: scale(1) translateY(0); }
+        
+        /* FIXED FLEX MIDDLE LOGICAL VIEWPORT: Ensures true dead centering */
+        #checkout-action-frame.active-frame { 
+            display: flex !important; 
+            opacity: 1; 
+            transform: scale(1) translateY(0);
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .dashboard-hero { background: linear-gradient(135deg, rgba(11, 19, 41, 0.5) 0%, rgba(3, 7, 18, 0.4) 100%); border: 1px solid rgba(0, 229, 255, 0.08); border-left: 4px solid var(--primary); padding: 30px; border-radius: 16px; margin-bottom: 30px; }
+        .dashboard-hero h3 { font-size: 22px; margin-bottom: 10px; color: #fff; font-weight: 700; }
+        .dashboard-hero p { color: #9ca3af; font-size: 14px; max-width: 800px; line-height: 1.6; }
+
+        .dc-specs-header { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-family: 'Fira Code', monospace; }
+        .datacenter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; }
+        .dc-card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 16px; padding: 25px; backdrop-filter: blur(15px); }
+        .dc-card h4 { font-size: 16px; color: #fff; margin-bottom: 10px; font-weight: 700; }
+        .dc-card p { font-size: 13px; color: #9ca3af; line-height: 1.6; }
+
+        .search-engine-module { display: flex; background: rgba(11, 19, 41, 0.4); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 14px; padding: 4px 4px 4px 18px; align-items: center; gap: 12px; max-width: 500px; margin-bottom: 30px; width: 100%; }
+        .search-engine-module input { background: transparent; border: none; outline: none; color: #fff; font-size: 14px; flex-grow: 1; padding: 8px 0; }
+
+        /* ================= GRID CLUSTERS ================= */
+        .services-layout-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; width: 100%; }
+        
+        .service-action-node {
+            background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: 16px; padding: 25px 20px; text-align: center; cursor: pointer;
+            position: relative; overflow: visible; display: flex; flex-direction: column;
+            align-items: center; justify-content: space-between; gap: 15px;
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .service-action-node:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 15px 30px rgba(0, 255, 102, 0.1); }
+        .service-action-node i { font-size: 34px; color: var(--accent); }
+        .service-action-node h3 { font-size: 14px; font-weight: 700; color: #fff; line-height: 1.4; }
+        
+        .node-price-badge {
+            background: rgba(0, 229, 255, 0.04); color: var(--accent); font-size: 11.5px;
+            padding: 5px 14px; border-radius: 30px; font-weight: 700; border: 1px solid rgba(0, 229, 255, 0.12);
+        }
+
+        /* ================= TOOLTIPS ================= */
+        .service-action-node .matrix-tooltip {
+            position: absolute; bottom: 108%; left: 50%; transform: translateX(-50%) translateY(10px);
+            width: 260px; background: rgba(11, 20, 43, 0.98); border: 1px solid var(--accent);
+            border-radius: 12px; padding: 15px; text-align: left; opacity: 0; pointer-events: none;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6); backdrop-filter: blur(10px); z-index: 500; transition: all 0.3s ease;
+        }
+        .service-action-node:hover .matrix-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
+        
+        .matrix-tooltip .tt-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 4px; }
+        .matrix-tooltip .tt-desc { font-size: 11px; color: #9ca3af; line-height: 1.4; margin-bottom: 10px; }
+        .matrix-tooltip .tt-pricing-row { display: flex; justify-content: space-between; align-items: center; }
+        .matrix-tooltip .tt-old-price { font-size: 11px; color: var(--danger); text-decoration: line-through; font-family: 'Fira Code', monospace; }
+        .matrix-tooltip .tt-discount { background: rgba(0, 255, 102, 0.1); color: var(--primary); font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+
+        /* ================= CHECKOUT MATRIX RESPONSIVE ================= */
+        .gateway-header-cluster {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 20px; margin-bottom: 25px; gap: 15px; width: 100%;
+        }
+        .btn-reverse-back {
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(0, 229, 255, 0.15);
+            color: var(--accent); padding: 10px 16px; border-radius: 10px; font-size: 12.5px;
+            font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;
+            transition: all 0.25s; flex-shrink: 0;
+        }
+
+        .checkout-card { 
+            background: var(--bg-card); 
+            border-radius: 20px; 
+            padding: 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.03); 
+            width: 100%;
+            max-width: 750px; 
+            margin: 10px auto; 
+            backdrop-filter: blur(20px); 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4); 
+        }
+        .checkout-banner { background: rgba(0, 255, 102, 0.02); border: 1px dashed var(--primary); color: var(--primary); padding: 14px; border-radius: 12px; font-weight: 700; text-align: center; font-size: 15px; margin-bottom: 30px; font-family: 'Fira Code', monospace; }
+        .form-group { margin-bottom: 22px; }
+        .form-group label { display: block; font-size: 11px; color: var(--accent); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-family: 'Fira Code', monospace; }
+        .form-control { width: 100%; padding: 16px 18px; background: rgba(3, 7, 18, 0.4); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; color: #fff; font-size: 14.5px; outline: none; }
+        .form-control:focus { border-color: var(--accent); }
+        .btn-dispatch { background: linear-gradient(90deg, var(--primary), var(--accent)); color: #030712; width: 100%; padding: 16px; border: none; border-radius: 12px; font-size: 15.5px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .btn-dispatch:hover { transform: translateY(-2px); box-shadow: 0 15px 30px var(--primary-glow); }
+
+        /* ================= RECORD SHEET ================= */
+        .history-box { background: rgba(11, 19, 41, 0.3); border-radius: 16px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.03); margin-top: 20px; overflow-x: auto; width: 100%; }
+        .tracking-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13.5px; min-width: 600px; }
+        .tracking-table th { padding: 12px; color: var(--accent); border-bottom: 2px solid rgba(0, 229, 255, 0.1); font-weight: 700; font-family: 'Fira Code', monospace; text-transform: uppercase; font-size: 11px; }
+        .tracking-table td { padding: 14px 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.02); color: #9ca3af; }
+        .badge-pill { background: rgba(0, 255, 102, 0.05); color: var(--primary); padding: 4px 12px; border-radius: 30px; font-size: 11px; font-weight: 700; border: 1px solid rgba(0, 255, 102, 0.15); font-family: 'Fira Code', monospace; }
+
+        .wa-float-trigger { position: fixed; bottom: 25px; right: 25px; background: #25d366; width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-size: 26px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25); z-index: 999; text-decoration: none; }
+
+        .backdrop-shroud { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3,7,18,0.8); backdrop-filter: blur(5px); z-index: 95; display: none; }
+        
+        /* ================= RESPONSIVE ENGINE MEDIA QUERIES ================= */
+        @media (min-width: 1151px) {
+            .workspace { width: calc(100% - 310px); }
+        }
+
+        @media (max-width: 1150px) {
+            .sidebar { position: fixed; left: 0; transform: translateX(-100%); box-shadow: 20px 0 40px rgba(0,0,0,0.7); }
+            .sidebar.mobile-open { transform: translateX(0); }
+            .menu-toggle-btn { display: block; }
+            .backdrop-shroud.active-shroud { display: block; }
+            .workspace { width: 100%; }
+            .top-navbar { padding: 10px 20px; }
+            .portal-view-page { padding: 25px 15px; }
+            .checkout-card { padding: 25px 20px; }
+        }
+
+        @media (max-width: 650px) {
+            /* FIXED MOBILE HEIGHT OVERLAPS: Collapses navbar inside adaptive rows smoothly */
+            .top-navbar { height: auto; min-height: 90px; flex-direction: row; justify-content: space-between; padding: 15px; flex-wrap: wrap; }
+            .view-title { order: 1; }
+            .wallet-hub { order: 2; padding: 8px 14px; font-size: 11.5px; }
+            .menu-toggle-btn { order: 3; }
+            .system-notice-board { padding: 10px 15px; gap: 10px; flex-direction: row; }
+            .notice-ticker-text { font-size: 12px; }
+            .portal-view-page { padding: 20px 10px; }
+            .dashboard-hero { padding: 20px 15px; margin-bottom: 20px; }
+            .dashboard-hero h3 { font-size: 18px; }
+            .dashboard-hero p { font-size: 13px; }
+            .gateway-header-cluster { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+            .btn-reverse-back { width: 100%; justify-content: center; padding: 12px; }
+            .service-action-node .matrix-tooltip { display: none !important; } 
+            .services-layout-grid { grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); gap: 12px; }
+            .checkout-card { padding: 20px 15px; border-radius: 14px; margin: 0 auto; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <div class="backdrop-shroud" id="layerShroud"></div>
+
+        <aside class="sidebar" id="sidebarNavigationPanel">
+            <div class="sidebar-header">
+                <div class="brand-logo"><span>HackProof</span> Area</div>
+                <div class="brand-tag">Network Automation Base</div>
+            </div>
+
+            <div class="engineer-profile-card">
+                <div class="profile-pulse-dot"></div>
+                <div class="profile-meta">
+                    <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?auto=format&fit=crop&w=150&q=80" alt="Md. Rimon Ahamed Avatar" class="profile-avatar" />
+                    <div>
+                        <h4>Rimon Ahamed</h4>
+                        <p>@Cyber_Hunter</p>
+                    </div>
+                </div>
+                <p class="profile-bio">Core Enterprise Network Architect, Specialist in MikroTik Infrastructure Deployments, Zero-Trust Access Isolation, and Tier-3 Security Matrix Auditing.</p>
+            </div>
+
+            <div class="menu-wrapper">
+                <div class="menu-label">প্যানেল ডিরেক্টরি রুট</div>
+                <ul class="menu-list">
+                    <li class="menu-item active" onclick="switchDynamicFrame('dashboard-frame', 'Control Overview Dashboard', this)">
+                        <i class="fa-solid fa-chart-network"></i> সিস্টেম ড্যাশবোর্ড
+                    </li>
+                    <li class="menu-item" onclick="switchDynamicFrame('multiservice-frame', 'All Premium Digital Services', this)">
+                        <i class="fa-solid fa-microchip"></i> মাল্টি-সার্ভিস ক্যাটালগ
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="tier-badge">
+                    <i class="fa-solid fa-shield-check"></i> SECURE CLOUD GATEWAY COMPLIANT
+                </div>
+            </div>
+        </aside>
+
+        <main class="workspace">
+            
+            <header class="top-navbar">
+                <i class="fa-solid fa-bars-staggered menu-toggle-btn" id="sidebarMenuOpen"></i>
+                <div class="view-title"><h2 id="globalViewHeader">Control Overview Dashboard</h2></div>
+                <div class="wallet-hub">
+                    <i class="fa-solid fa-vault"></i>
+                    <span>রিমোট ব্যালেন্স: ৳ ১২৫০.০০</span>
+                </div>
+            </header>
+
+            <div class="system-notice-board" id="globalSystemNoticeNode">
+                <div class="notice-tag"><i class="fa-solid fa-circle-exclamation"></i> Notice</div>
+                <div class="notice-ticker-text" id="liveNoticeTickerField">Loading official directive information streams...</div>
+            </div>
+
+            <div class="view-wrapper">
+
+                <div id="dashboard-frame" class="portal-view-page active-frame">
+                    <div class="dashboard-hero">
+                        <h3>HackProof Academy ওপারেশনাল কন্ট্রোল হাবে স্বাগতম</h3>
+                        <p>এটি আপনার ডেডিকেটেড operation কমান্ড হাব। বাম পাশের সিস্টেম সাইডবার ক্যাটালগ থেকে "মাল্টি-সার্ভিস ক্যাটালগ" নির্বাচন করুন, তাৎক্ষণিক রিকোয়েস্ট প্যারামিটার ডিক্লেয়ার করুন এবং স্বয়ংক্রিয় প্রসেসিং গেটওয়ে ইন্টিগ্রেশন রান করুন।</p>
+                    </div>
+
+                    <div class="dc-specs-header"><i class="fa-solid fa-layer-group"></i> Infrastructure Clusters & Architecture</div>
+                    <div class="datacenter-grid">
+                        <div class="dc-card">
+                            <h4>Asianserver High-Density Node</h4>
+                            <p>৯৯.৯৮% হাই-অ্যাভেলেবিলিটি সম্পন্ন ক্লাউড নোড গ্রিড, রিডান্ড্যান্ট পাওয়ার মডিউলে নির্বিঘ্নে পরিচালিত।</p>
+                        </div>
+                        <div class="dc-card">
+                            <h4>Layer-7 Firewall Screening</h4>
+                            <p>প্যালো আল্টো এবং ফরটিনেট রিয়েলটাইম প্যাকেট ফিল্টারিং ডিফেন্স আর্কিটেকচার দ্বারা ম্যালিশিয়াস ট্রাফিক আইসোলেটেড।</p>
+                        </div>
+                        <div class="dc-card">
+                            <h4>Dynamic Session Anti-Spike</h4>
+                            <p>যেকোনো প্রকার অস্বাভাবিক কানেকশন স্পাইক সনাক্ত হওয়া মাত্র ব্যাকআপ লোড ডিস্ট্রিবিউটর সিস্টেম সেশন প্রটেক্ট করে।</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="multiservice-frame" class="portal-view-page">
+                    <div style="margin-bottom: 10px;">
+                        <h3 style="color: #fff; font-size: 20px; font-weight: 700;">প্রিমিয়াম ডিজিটাল অটোমেশন ক্যাটালগ</h3>
+                        <p style="color: var(--text-muted); font-size: 13.5px; margin-top: 6px; margin-bottom: 25px;">যেকোনো সার্ভিস ক্যাটালগের ওপর মাউস রাখলে ডিসকাউন্ট এবং কাজ দেখতে পারবেন।</p>
+                    </div>
+
+                    <div class="search-engine-module">
+                        <i class="fa-solid fa-terminal"></i>
+                        <input type="text" id="serviceSearchInput" placeholder="সার্ভিস ডাটা মডিউল অনুসন্ধান করুন (যেমন: NID, ভেরিফাই, ফেসবুক...)" onkeyup="filterServicesCatalog()" />
+                    </div>
+
+                    <div class="services-layout-grid" id="serviceCatalogInjectionMatrix">
+                        </div>
+                </div>
+
+                <div id="checkout-action-frame" class="portal-view-page">
+                    <div class="checkout-card">
+                        
+                        <div class="gateway-header-cluster">
+                            <div>
+                                <h3 style="color: #fff; font-size: 18px;" id="checkoutTargetTitle">অপারেশন গেটওয়ে ভেরিফিকেশন</h3>
+                                <p style="color: var(--text-muted); font-size: 13px; margin-top: 6px;">নির্বাচিত অটোমেশন প্যারামিটার ডেটা সঠিকভাবে ইনপুট করুন।</p>
+                            </div>
+                            <button class="btn-reverse-back" onclick="switchDynamicFrame('multiservice-frame', 'All Premium Digital Services')">
+                                <i class="fa-solid fa-arrow-left-long"></i> অন্য সার্ভিস দেখুন (Back)
+                            </button>
+                        </div>
+
+                        <div class="checkout-banner">সার্ভিস কস্ট রেট: <span id="checkoutTargetCost">৳ ০.০০</span> BDT</div>
+
+                        <form id="secureOrderCompilationEngine">
+                            <input type="hidden" id="hiddenPayloadTitle" />
+                            <input type="hidden" id="hiddenPayloadPrice" />
+                            <input type="hidden" id="hiddenPayloadDesc" /> 
+
+                            <div class="form-group">
+                                <label>টার্গেট আইডেন্টিফায়ার / সাবস্ক্রাইবার আইডি / সিস্টেম আইপি রুট</label>
+                                <input type="text" id="coreSystemTargetData" class="form-control" placeholder="সঠিক টার্গেট বা অ্যাকাউন্ট ডাটা স্ট্রিং..." required />
+                            </div>
+                            <div class="form-group">
+                                <label>কাস্টম ডিরেক্টিভ নোটস / রিমার্কস (ঐচ্ছিক)</label>
+                                <input type="text" id="optionalSystemRemarks" class="form-control" placeholder="কোনো অতিরিক্ত নির্দেশনা থাকলে উল্লেখ করুন..." />
+                            </div>
+                            <button type="submit" class="btn-dispatch"><i class="fa-solid fa-microchip-transporter"></i> রিকোয়েস্ট সাবমিট করুন</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="padding: 0 30px 25px 30px; flex-shrink: 0; background: var(--bg-main); width: 100%;">
+                <div class="history-box">
+                    <h4 style="margin-bottom: 15px; font-size: 13.5px; color: #fff; font-family: 'Fira Code', monospace;">
+                        <i class="fa-solid fa-rectangle-terminal" style="color: var(--primary); margin-right: 8px;"></i> LIVE TRANSACTION OPERATIONAL LOGS [ASIANSERVER RUNTIME CORE]
+                    </h4>
+                    <table class="tracking-table">
+                        <thead>
+                            <tr>
+                                <th>অর্ডার আইডি স্ট্রিম</th>
+                                <th>সার্ভিস নোড প্রোটোকল</th>
+                                <th>গেটওয়ে ডেবিট কস্ট</th>
+                                <th>অ্যাকশন স্ট্যাটাস</th>
+                            </tr>
+                        </thead>
+                        <tbody id="liveLogSheetRows">
+                            <tr>
+                                <td>#HP-9012</td>
+                                <td>NID সার্ভার কপি ডাউনলোড</td>
+                                <td>৳ ৩০.০০</td>
+                                <td><span class="badge-pill">ACTIVE_PROCESSING</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <a href="#" id="waContactGlobalAnchor" class="wa-float-trigger" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
+        }
+
+        setInterval(function() {
+            if(window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+                document.body.innerHTML = "<div style='background:#030712; color:#ff0055; text-align:center; padding-top:20vh; font-family:\"Fira Code\",monospace; height:100vh;'><h2>[CRITICAL_WARNING] SYSTEM SECURITY EXCEPTION DETECTED: ACCESS DENIED.</h2></div>";
+            }
+        }, 1000);
+
+        const DEST_ADMIN_WHATSAPP = "8801782642544"; 
+
+        const SYSTEM_NOTICE_TEXT = "📢 হ্যালো ইঞ্জিনিয়ার! আমাদের Asianserver এপিআই ক্লাস্টারে নতুন সিকিউরড গেটওয়ে আপডেট সাকসেসফুলি ইনজেক্ট করা হয়েছে। এখন থেকে প্রতিটি ট্রানজেকশন ডেটা রিয়েল-টাইম এন্ড-টু-এন্ড এনক্রিপ্ট হবে। যেকোনো সার্ভারের সমস্যা দেখা দিলে এডমিন সাপোর্ট প্যানেলে টিকিট ওপেন করুন।";
+        document.getElementById('liveNoticeTickerField').innerText = SYSTEM_NOTICE_TEXT;
+
+        const multiServicesDatabase = [
+            { id: 1, name: "NID সার্ভার কপি ডাউনলোড", icon: "fa-id-card", price: "৳ ৩০", oldPrice: "৳ ৫০", desc: "জাতীয় পরিচয়পত্রের অফিসিয়াল সার্ভার ডাটাবেজ থেকে মূল কপি এক্সট্রাক্ট এবং ডাউনলোড স্কিম।" },
+            { id: 2, name: "TIN সার্টিফিকেট ইনস্ট্যান্ট জেনারেটর", icon: "fa-file-invoice-dollar", price: "৳ ৫০", oldPrice: "৳ ৮০", desc: "ইলেকট্রনিক ট্যাক্স আইডেন্টিফিকেশন স্লিপ বা কর সার্টিফিকেট ফাইল জেনারেশন মডিউল।" },
+            { id: 3, name: "বায়োমেট্রিক SIM ওনারশিপ ভেরিফাই", icon: "fa-fingerprint", price: "৳ ৪০", oldPrice: "৳ ৬০", desc: "যেকোনো অপারেটরের সিম কার্ডের প্রকৃত বায়োমেট্রিক মালিকানার তথ্য ভেরিফিকেশন রুট।" },
+            { id: 4, name: "অনлайн জন্ম নিবন্ধন অনুসন্ধান", icon: "fa-baby", price: "৳ ২০", oldPrice: "৳ ৩৫", desc: "সরকারি ডিজিটাল রেজিস্ট্রি থেকে ডিজিটাল জন্ম সনদের সঠিক তথ্য অনুসন্ধান গেটওয়ে।" },
+            { id: 5, name: "স্মার্ট আইডি কার্ড নম্বর ট্র্যাকার", icon: "fa-address-card", price: "৳ ২৫", oldPrice: "৳ ৪০", desc: "স্মার্টカード বা ভোটার স্লিপ আইডির ডাটাবেস রিয়েলটাইম লোকেশন অ্যান্ড ট্র্যাকিং মেকানিজম।" },
+            { id: 6, name: "ভোটার স্লিপ ডাটা এক্সট্রাকশন", icon: "fa-file-shield", price: "৳ ১৫", oldPrice: "৳ ৩০", desc: "নতুন ভোটারদের অস্থায়ী স্লিপ ডাটা সিঙ্ক করে ফুল ইনফরমেশন এক্সট্রাক্ট প্রোটোকল।" },
+            { id: 7, name: "BRTA ড্রাইভিং লাইসেন্স চেক", icon: "fa-id-badge", price: "৳ ৬০", oldPrice: "৳ ১০০", desc: "ড্রাইভিং লাইসেন্স কার্ডের প্রোভিশনাল বা পার্মানেন্ট স্ট্যাটাস রিমোট ক্যোয়ারী ফিল্টারিং।" },
+            { id: 8, name: "মেসিন রিডেবল পাসপোর্ট ট্র্যাকিং", icon: "fa-passport", price: "৳ ৩০", oldPrice: "৳ ৫০", desc: "MRP বা ই-পাসপোর্টের ডেলিভারি এবং এনরোলমেন্ট স্ট্যাটাস লাইভ ক্লাউড ডাটা ট্র্যাকার।" },
+            { id: 9, name: "ডিজিটাল সিকিউর অনলাইন জিডি", icon: "fa-shield-halved", price: "৳ ১০০", oldPrice: "৳ ১৫০", desc: "হারানো বা সুরক্ষার যেকোনো আইনি ডায়েরি অনলাইন পোর্টালে সরাসরি প্রসেসিং লুপ।" },
+            { id: 10, name: "ভূমি রেকর্ড ই-নামজারি ট্র্যাকিং", icon: "fa-map-location-dot", price: "৳ ৪৫", oldPrice: "৳ ৭০", desc: "ভূমির ই-মিউটেশন বা ডিজিটাল নামজারি খতিয়ান অ্যাপ্লিকেশনের সেশন ট্র্যাকিং কোড।" },
+            { id: 11, name: "খতিয়ান ও পর্চা অনলাইন ভেরিফাই", icon: "fa-file-signature", price: "৳ ৫০", oldPrice: "৳ ৮০", desc: "ভূমি মন্ত্রণালয়ের আরএস/বিএস খতিয়ান এবং ডিজিটাল পর্চার মূল ডাটাবেস ভেরিফিকেশন।" },
+            { id: 12, name: "স্মার্ট বিদ্যুৎ বিল গেটওয়ে চেক", icon: "fa-bolt", price: "৳ ১০", oldPrice: "৳ ২০", desc: "ডেসকো, ডিপিডিসি বা পল্লী বিদ্যুতের বকেয়া বিল ব্যালেন্স এবং মিটার ডাটা রিডার।" },
+            { id: 13, name: "অফিসিয়াল মার্কশিট রেজাল্ট ফাইন্ডার", icon: "fa-graduation-cap", price: "৳ ১৫", oldPrice: "৳ ২৫", desc: "জাতীয় শিক্ষা বোর্ড ডাটাবেস থেকে এসএসসি/এইচএসসি পরীক্ষার জিপিএ এবং মার্কশিট অনুসন্ধান।" },
+            { id: 14, name: "ভ্যাকসিন বা কোভিড সার্টিফিকেট কারেকশন", icon: "fa-file-medical", price: "৳ ৭০", oldPrice: "৳ ১২০", desc: "সুরক্ষা ডাটাবেজ সিস্টেমে পাসপোর্ট নম্বর সিঙ্ক্রোনাইজেশন এবং ভুল তথ্য সংশোধন স্কিম।" },
+            { id: 15, name: "ই-ট্রেড লাইসেন্স ডাটা প্রসেসিং", icon: "fa-briefcase", price: "৳ ১২০", oldPrice: "৳ ۲۰۰", desc: "ডিজিটাল কমার্শিয়াল ট্রেড লাইসেন্সের ভেরিফিকেশন এবং ভ্যালিডিটি স্ট্যাটাস রিডার।" },
+            { id: 16, name: "police ক্লিয়ারেন্স রিমোট স্ট্যাটাস", icon: "fa-building-shield", price: "৳ ৮০", oldPrice: "৳ ১৩০", desc: "বৈদেশিক বা অফিশিয়াল police ক্লিয়ারেন্স সার্টিফিকেটের ফাইল কাউন্টার ভেরিফিকেশন রুট।" },
+            { id: 17, name: "বিকাশ/নগদ ট্রানজেকশন রিভার্সাল হেল্প", icon: "fa-money-bill-transfer", price: "৳ ২০", oldPrice: "৳  ৫০", desc: "ভুল নম্বরে মানি ট্রান্সমিট হলে সিস্টেমেটিক কমপ্লেইন ফরম্যাটিং আর্কিটেকচার গাইড।" },
+            { id: 18, name: "সোশ্যাল মিডিয়া কম্প্রোমাইজড রিকভারি", icon: "fa-user-lock", price: "৳ ১৫০", oldPrice: "৳ ৩০০", desc: "হ্যাকড বা সিকিউরিটি হোল্ডে পড়া প্রোফাইলের সিকিউর আইডেন্টিটি রিকভারি ইন্টারফেস।" },
+            { id: 19, name: "সার্ভার সিকিউরিটি অডিটিং ও বুস্টিং", icon: "fa-server", price: "৳ ২৫০", oldPrice: "৳ ৫০০", desc: "ওয়েব বা নেটওয়ার্ক ব্যাকএন্ডের পোর্ট স্ক্যানিং, ওয়ান্যাবিলিটি ফিক্সিং এবং ফায়ারওয়াল আর্মার।" },
+            { id: 20, name: "ইনক্রিপ্ট ডেডিকেটেড প্রিমিয়াম VPN", icon: "fa-network-wired", price: "৳ ৯৯", oldPrice: "৳ ১৫০", desc: "হাই-স্পিড সিকিউর জিরো-লগ টানেলিং প্রোটোকল প্রিমিয়াম প্রক্সি সেশন রুট।" },
+            { id: 21, name: "ফেসবুক প্রতি অ্যাকাউন্ট রিকভারি", icon: "fa-brands fa-facebook-f", price: "৳ ২০০", oldPrice: "৳ ৪০০", desc: "ফেসবুক টু-ফ্যাক্টর অথেন্টিকেশন বাইপাস এবং আইডেন্টিটি লক রিমুভাল মেকানিজম।" },
+            { id: 22, name: "Gmail per Account Setup Fix", icon: "fa-envelope", price: "৳ ৯৯", oldPrice: "৳ ১৮০", desc: "জিমেইল রিমোট অ্যাকাউন্ট রিকভারি এবং অ্যাডভান্সড সিকিউরিটি মডিউল্যার প্যারামিটার সেটআপ।" }
+        ];
+
+        const catalogContainer = document.getElementById('serviceCatalogInjectionMatrix');
+        
+        function renderServices(servicesArray) {
+            catalogContainer.innerHTML = ""; 
+            if(servicesArray.length === 0) {
+                catalogContainer.innerHTML = `<p style="color: var(--text-muted); font-family:'Fira Code', monospace; grid-column: 1/-1; text-align: center; padding: 40px; font-size:14px;">[NO_RECORD_FOUND] এই কিওয়ার্ডের সাথে সামঞ্জস্যপূর্ণ কোনো মডিউল খুঁজে পাওয়া যায়নি।</p>`;
+                return;
+            }
+            servicesArray.forEach(service => {
+                const nodeElement = document.createElement('div');
+                nodeElement.className = 'service-action-node';
+                nodeElement.setAttribute('onclick', `initiateCheckoutPipeline('${service.name.replace(/'/g, "\\'")}', '${service.price}', '${service.desc.replace(/'/g, "\\'")}')`);
+                
+                nodeElement.innerHTML = `
+                    <div class="matrix-tooltip">
+                        <div class="tt-title"><i class="fa-solid fa-microchip"></i> ${service.name}</div>
+                        <div class="tt-desc">${service.desc}</div>
+                        <div class="tt-pricing-row">
+                            <span class="tt-old-price">${service.oldPrice}</span>
+                            <span class="tt-discount">ডিসকাউন্ট রানিং</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid ${service.icon}"></i>
+                    <h3>${service.name}</h3>
+                    <div class="node-price-badge">${service.price}</div>
+                `;
+                catalogContainer.appendChild(nodeElement);
+            });
+        }
+
+        renderServices(multiServicesDatabase);
+
+        function filterServicesCatalog() {
+            const queryValue = document.getElementById('serviceSearchInput').value.toLowerCase().trim();
+            const filteredResults = multiServicesDatabase.filter(service => {
+                return service.name.toLowerCase().includes(queryValue);
+            });
+            renderServices(filteredResults);
+        }
+
+        document.getElementById('waContactGlobalAnchor').href = `https://wa.me/${DEST_ADMIN_WHATSAPP}`;
+
+        function switchDynamicFrame(frameId, headingText, sidebarMenuListItem) {
+            document.querySelectorAll('.portal-view-page').forEach(page => {
+                page.classList.remove('active-frame');
+            });
+
+            const targetedViewFrame = document.getElementById(frameId);
+            targetedViewFrame.classList.add('active-frame');
+            targetedViewFrame.scrollTop = 0; 
+
+            document.getElementById('globalViewHeader').innerText = headingText;
+
+            if(sidebarMenuListItem) {
+                document.querySelectorAll('.menu-item').forEach(li => li.classList.remove('active'));
+                sidebarMenuListItem.classList.add('active');
+            }
+
+            document.getElementById('sidebarNavigationPanel').classList.remove('mobile-open');
+            document.getElementById('layerShroud').classList.remove('active-shroud');
+        }
+
+        function initiateCheckoutPipeline(name, price, desc) {
+            document.getElementById('checkoutTargetTitle').innerText = name + " [ SYSTEM_CORE_ENGAGED ]";
+            document.getElementById('checkoutTargetCost').innerText = price;
+            document.getElementById('hiddenPayloadTitle').value = name;
+            document.getElementById('hiddenPayloadPrice').value = price;
+            document.getElementById('hiddenPayloadDesc').value = desc; 
+
+            switchDynamicFrame('checkout-action-frame', 'Secure Order Terminal', null);
+        }
+
+        const mobTrigger = document.getElementById('sidebarMenuOpen');
+        const sidePanel = document.getElementById('sidebarNavigationPanel');
+        const shroudView = document.getElementById('layerShroud');
+
+        mobTrigger.addEventListener('click', () => { sidePanel.classList.toggle('mobile-open'); shroudView.classList.toggle('active-shroud'); });
+        shroudView.addEventListener('click', () => { sidePanel.classList.remove('mobile-open'); shroudView.classList.remove('active-shroud'); });
+
+        // FIXED REALTIME FORM EXTRACTION OBJECT ENGINE
+        document.getElementById('secureOrderCompilationEngine').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Fetching active inputs natively inside execution lifecycle
+            const parsedTitle = document.getElementById('hiddenPayloadTitle').value;
+            const parsedCost = document.getElementById('hiddenPayloadPrice').value;
+            const parsedDesc = document.getElementById('hiddenPayloadDesc').value; 
+            const parsedTargetValue = document.getElementById('coreSystemTargetData').value;
+            const parsedUserRemarks = document.getElementById('optionalSystemRemarks').value || 'None Specified';
+            const transactionTrackingId = '#HP-' + Math.floor(3000 + Math.random() * 6999);
+
+            const whatsappStringStream = 
+                `*🛡️ HACKPROOF ACADEMY GATEWAY INVOICE 🛡️*%0A` +
+                `========================================%0A` +
+                `*TRANSACTION ID :* ${transactionTrackingId}%0A` +
+                `*GATEWAY MODULE :* ${encodeURIComponent(parsedTitle)}%0A` +
+                `*MODULE DETAILS :* ${encodeURIComponent(parsedDesc)}%0A` +
+                `*COST CHARGE    :* ${encodeURIComponent(parsedCost)} BDT%0A` +
+                `*TARGET DEST    :* ${encodeURIComponent(parsedTargetValue)}%0A` +
+                `*CONFIG REMARKS :* ${encodeURIComponent(parsedUserRemarks)}%0A` +
+                `========================================%0A` +
+                `*STATUS:* PENDING AUTHORIZATION VIA SYSTEM WAITING CORE.`;
+
+            const ledgerLogsSheet = document.getElementById('liveLogSheetRows');
+            const rowNode = document.createElement('tr');
+            rowNode.innerHTML = `
+                <td>${transactionTrackingId}</td>
+                <td>${parsedTitle}</td>
+                <td>${parsedCost}.০০</td>
+                <td><span class="badge-pill">ACTIVE_PROCESSING</span></td>
+            `;
+            ledgerLogsSheet.insertBefore(rowNode, ledgerLogsSheet.firstChild);
+
+            alert("অর্ডার সেশন সফলভাবে এনক্রিপ্ট করা হয়েছে! হোয়াটসঅ্যাপে ট্রান্সমিট করা হচ্ছে।");
+            window.open(`https://wa.me/${DEST_ADMIN_WHATSAPP}?text=${whatsappStringStream}`, '_blank');
+        });
+    </script>
+</body>
+</html>
         .menu-list { list-style: none; }
         .menu-item {
             padding: 14px 16px; margin-bottom: 6px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; color: #9ca3af; transition: all 0.25s ease; border: 1px solid transparent;
